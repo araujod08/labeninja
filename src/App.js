@@ -67,7 +67,7 @@ export default class App extends React.Component {
                 <DivContainer>
                     <DivEsquerda>
                         <img src={myImg} alt="logo labeninjas"></img>
-                        <h1>Ninjas estão por toda parte.</h1>
+                        <h1>Ninjas estão por toda parte!</h1>
                     </DivEsquerda>
                     <DivDireita>
                         <h1>Se você é um deles, bem-vindo. <br></br>Se precisa de um deles, bem-vindo também.</h1>
