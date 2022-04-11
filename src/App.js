@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 // import { Serviços } from './components/PaginaServico/PaginaServico'
 import Logo from './components/img/redes-sociais/Twitter.png'
+import PaginaCadastro from './components/PaginaCadastro/PaginaCadastro'
+
+
 
 const GlobalStyles = styled.div`
     padding: 0;
@@ -26,7 +29,7 @@ const DivEsquerda = styled.div`
     display: flex;
     flex-direction:column;
     align-items: center;
-  
+
 `
 const DivDireita = styled.div`
     display: flex;
@@ -42,7 +45,7 @@ export default class App extends React.Component {
 
         return (
             <GlobalStyles>
-                <DivContainer>
+                {/* <DivContainer>
                     <DivEsquerda>
                     <img scr={Logo} alt="logo"></img>
                     <h1>labeninjas</h1>
@@ -56,9 +59,10 @@ export default class App extends React.Component {
                         preciso de um ninja
                     </button>
                     </DivDireita>
-                    {/* <Serviços /> */}
+                    <Serviços />
 
-                </DivContainer>
+                </DivContainer> */}
+                <PaginaCadastro/>
             </GlobalStyles>
         )
     }
