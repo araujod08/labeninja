@@ -60,12 +60,11 @@ const DivBotoes = styled.div`
     padding: 50px;
 `
 
-
 export default class App extends React.Component {
     render() {
         return (
             <GlobalStyles>
-                 <DivContainer>
+                <DivContainer>
                     <DivEsquerda>
                         <img src={myImg} alt="logo labeninjas"></img>
                         <h1>Ninjas estão por toda parte.</h1>
@@ -77,9 +76,7 @@ export default class App extends React.Component {
                             <button>Contrate um ninja</button>
                         </DivBotoes>
                     </DivDireita>
-                    <Serviços />
-                </DivContainer>
-                <PaginaCadastro/>
+                    <PaginaCadastro/>
                     <Serviços />
                 </DivContainer>
             </GlobalStyles>
