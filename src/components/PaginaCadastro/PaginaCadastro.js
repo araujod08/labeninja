@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from "styled-components"
 
 
@@ -9,6 +9,14 @@ export default class PaginaCadastro extends React.Component {
         checkboxCartaodeDebito: false,
         checkboxPix: false,
         checkboxPayPal: false,
+        inputData: "",
+            
+    }
+    onChangeData= (event) =>{
+        this.setState({
+            inputData:event.target.value
+        })
+
     }
     createJob = () => {
         const pagamentos = []
@@ -49,8 +57,8 @@ export default class PaginaCadastro extends React.Component {
                         onChange=''
                     />
                     <input
-                        value=''
-                        onChange=''
+                        value={this.state.inputData}
+                        onChange={this.onChangeData}
                         type='date'
                     />
                     <div>
