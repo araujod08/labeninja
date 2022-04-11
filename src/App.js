@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-// import { Serviços } from './components/PaginaServico/PaginaServico'
 import PaginaCadastro from './components/PaginaCadastro/PaginaCadastro'
 import myImg from './components/img/Logo.png'
+import { PaginaServico } from './components/PaginaServico/PaginaServico'
 
 const GlobalStyles = styled.div`
     padding: 0;
@@ -65,22 +65,18 @@ export default class App extends React.Component {
     render() {
         return (
             <GlobalStyles>
-                 <DivContainer>
-                    <DivEsquerda>
+                <DivContainer>
+                        <DivEsquerda>
                         <img src={myImg} alt="logo labeninjas"></img>
                         <h1>Ninjas estão por toda parte.</h1>
                     </DivEsquerda>
                     <DivDireita>
-                        <h1>Se você é um deles, bem-vindo. <br></br>Se precisa de um deles, bem-vindo também.</h1>
+                        <h1>Se você é um deles, bem-vindo.<br></br>Se precisa de um deles, bem-vindo também.</h1>
                         <DivBotoes>
                             <button>Sou um ninja</button>
                             <button>Contrate um ninja</button>
                         </DivBotoes>
                     </DivDireita>
-                    <Serviços />
-                </DivContainer>
-                <PaginaCadastro/>
-                    <Serviços />
                 </DivContainer>
             </GlobalStyles>
         )
