@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 // import { Serviços } from './components/PaginaServico/PaginaServico'
+import PaginaCadastro from './components/PaginaCadastro/PaginaCadastro'
 import myImg from './components/img/Logo.png'
 
 const GlobalStyles = styled.div`
@@ -31,6 +32,7 @@ const DivEsquerda = styled.div`
     img{
         width: 500px;
     }
+
 `
 const DivDireita = styled.div`
     display: flex;
@@ -63,7 +65,7 @@ export default class App extends React.Component {
     render() {
         return (
             <GlobalStyles>
-                <DivContainer>
+                 <DivContainer>
                     <DivEsquerda>
                         <img src={myImg} alt="logo labeninjas"></img>
                         <h1>Ninjas estão por toda parte.</h1>
@@ -75,7 +77,10 @@ export default class App extends React.Component {
                             <button>Contrate um ninja</button>
                         </DivBotoes>
                     </DivDireita>
-                    {/* <Serviços /> */}
+                    <Serviços />
+                </DivContainer>
+                <PaginaCadastro/>
+                    <Serviços />
                 </DivContainer>
             </GlobalStyles>
         )
