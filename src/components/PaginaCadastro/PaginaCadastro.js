@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
 import Header from '../Header/Header'
-import  Footer  from '../Footer/Footer'
+import Footer from '../Footer/Footer'
 
 const DivContainer = styled.div`
     margin: 50px;
@@ -17,11 +17,11 @@ export default class PaginaCadastro extends React.Component {
         checkboxPix: false,
         checkboxPayPal: false,
         inputData: "",
-            
+
     }
-    onChangeData= (event) =>{
+    onChangeData = (event) => {
         this.setState({
-            inputData:event.target.value
+            inputData: event.target.value
         })
 
     }
@@ -45,6 +45,8 @@ export default class PaginaCadastro extends React.Component {
     render() {
         return (
             <div>
+                <Header
+                    irParaHome={this.props.irParaHome} irParaServico={this.props.irParaServico} />
                 <h1>Cadastre o seu serviço</h1>
                 <DivContainer>
                     <input
@@ -119,6 +121,7 @@ export default class PaginaCadastro extends React.Component {
                         <label for="pix">Pix</label>
                     </div>
                 </DivContainer>
+                <Footer/>
             </div>
         )
     }
