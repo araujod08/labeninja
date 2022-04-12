@@ -7,8 +7,8 @@ import Twitter from '../img/Twitter.png'
 
 const DivFooter = styled.div`
     background-color: #250045;
-    height: 15vh;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     margin: 0;

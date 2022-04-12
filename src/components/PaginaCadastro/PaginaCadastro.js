@@ -152,6 +152,7 @@ export default class PaginaCadastro extends React.Component {
                             value={this.state.inputData}
                             onChange={this.onChangeData}
                             type='date'
+                            min={new Date().toISOString().slice(0, 10)}
                         />
                         <div>
                             <p>Formas de Pagamentos:</p>
