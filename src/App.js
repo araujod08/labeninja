@@ -12,11 +12,16 @@ export default class App extends React.Component {
     escolheTela = () => {
         switch (this.state.telaAtual) {
             case "home":
-                return <Home irParaCadastro={this.irParaCadastro} irParaServico={this.irParaServico} />
+                return <Home
+                    irParaCadastro={this.irParaCadastro}
+                    irParaServico={this.irParaServico} />
             case "souninja":
-                return <PaginaCadastro irParaHome={this.irParaHome} irParaServico={this.irParaServico} />
+                return <PaginaCadastro
+                    irParaHome={this.irParaHome}
+                    irParaServico={this.irParaServico} />
             case "servico":
-                return <PaginaServico irParaHome={this.irParaHome} irParaCadastro={this.irParaCadastro} />
+                return <PaginaServico irParaHome={this.irParaHome}
+                    irParaCadastro={this.irParaCadastro} />
             default:
                 return <div>Erro! Os ninjas roubaram a pagina.</div>
         }
@@ -38,7 +43,6 @@ export default class App extends React.Component {
         return (
             <div>
                 {this.escolheTela()}
-                
             </div>
         )
     }
