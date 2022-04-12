@@ -11,21 +11,22 @@ const DivFooter = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    margin: 0;
 `
 const ContainerLogo = styled.div`
     display: flex;
     align-items: center;
     img{
-        width: 100px;
+        max-width: 80px;
         padding: 10px; 
+        margin-top: 1px;
     }
     h1{
         padding: 10px;
         color: white;
     }
 `
-const ContainerRedes =styled.div`
+const ContainerRedes = styled.div`
     display: flex;
     img{
         width: 60px;
