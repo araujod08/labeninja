@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
-import { Header } from '../Header/Header'
-import { Footer } from '../Footer/Footer'
+import Header from '../Header/Header'
+import  Footer  from '../Footer/Footer'
 
 export default class PaginaCadastro extends React.Component {
     state = {
@@ -41,6 +41,8 @@ export default class PaginaCadastro extends React.Component {
     render() {
         return (
             <div>
+                <Header 
+                irParaHome={this.props.irParaHome} irParaServico={this.props.irParaServico}/>
                 <h1>Cadastre o seu serviço</h1>
                 <div>
                     <input
@@ -115,6 +117,7 @@ export default class PaginaCadastro extends React.Component {
                         <label for="pix">Pix</label>
                     </div>
                 </div>
+                <Footer/>
             </div>
         )
     }
