@@ -26,6 +26,7 @@ const ContainerLogo = styled.div`
 const ContainerBotoes = styled.div`
     display: flex;
     padding: 50px;
+    flex-wrap: wrap;
     button{
         margin: 5px;
         width: 100px;

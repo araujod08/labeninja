@@ -15,7 +15,7 @@ const headers = {
     }
 }
 
-const SuperContainerCadastro = styled.div`
+const SuperContainerCadastro = styled.section`
     display: flex;
     flex-direction: column;
     height: 100vh;
