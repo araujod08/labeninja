@@ -1,88 +1,44 @@
 import React from 'react'
-import styled from 'styled-components'
-// import { Serviços } from './components/PaginaServico/PaginaServico'
 import PaginaCadastro from './components/PaginaCadastro/PaginaCadastro'
-import myImg from './components/img/Logo.png'
-
-const GlobalStyles = styled.div`
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    
-`
-const DivContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    background-color: #6101bd;
-    height: 100vh;
-    justify-content: space-around;
-    align-items: center;
-`
-
-const DivEsquerda = styled.div`
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-    text-align: center;
-    min-width: 960px;
-    img{
-        width: 500px;
-    }
-
-`
-const DivDireita = styled.div`
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-    text-align: center;
-    button{
-        margin: 20px;
-        width: 250px;
-        height: 35px;
-        background-color: #250045;
-        color: white;
-        border: none;
-        transition-duration: 0.4s;
-        border-radius: 180px;
-    }
-    button:hover{
-        background-color: white;
-        color: #250045;
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
-    }
-`
-
-const DivBotoes = styled.div`
-    padding: 50px;
-`
+import { PaginaServico } from './components/PaginaServico/PaginaServico'
+import Home from './components/Home/Home'
 
 
 export default class App extends React.Component {
+    state = {
+        telaAtual: "home",
+    }
+
+    escolheTela = () => {
+        switch (this.state.telaAtual) {
+            case "home":
+                return <Home irParaCadastro={this.irParaCadastro} irParaServico={this.irParaServico} />
+            case "souninja":
+                return <PaginaCadastro irParaHome={this.irParaHome} irParaServico={this.irParaServico} />
+            case "servico":
+                return <PaginaServico irParaHome={this.irParaHome} irParaCadastro={this.irParaCadastro} />
+            default:
+                return <div>Erro! Os ninjas roubaram a pagina.</div>
+        }
+    }
+
+    irParaCadastro = () => {
+        this.setState({ telaAtual: "souninja" })
+    }
+
+    irParaServico = () => {
+        this.setState({ telaAtual: "servico" })
+    }
+
+    irParaHome = () => {
+        this.setState({ telaAtual: "home" })
+    }
+
     render() {
         return (
-            <GlobalStyles>
-                 <DivContainer>
-                    <DivEsquerda>
-                        <img src={myImg} alt="logo labeninjas"></img>
-                        <h1>Ninjas estão por toda parte.</h1>
-                    </DivEsquerda>
-                    <DivDireita>
-                        <h1>Se você é um deles, bem-vindo. <br></br>Se precisa de um deles, bem-vindo também.</h1>
-                        <DivBotoes>
-                            <button>Sou um ninja</button>
-                            <button>Contrate um ninja</button>
-                        </DivBotoes>
-                    </DivDireita>
-                    <Serviços />
-                </DivContainer>
-                <PaginaCadastro/>
-                    <Serviços />
-                </DivContainer>
-            </GlobalStyles>
+            <div>
+                {this.escolheTela()}
+            </div>
         )
     }
 }

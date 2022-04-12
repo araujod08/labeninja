@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
-
+import { Header } from '../Header/Header'
+import { Footer } from '../Footer/Footer'
 
 export default class PaginaCadastro extends React.Component {
     state = {
@@ -10,14 +11,15 @@ export default class PaginaCadastro extends React.Component {
         checkboxPix: false,
         checkboxPayPal: false,
         inputData: "",
-            
-    }
-    onChangeData= (event) =>{
-        this.setState({
-            inputData:event.target.value
-        })
 
     }
+
+    onChangeData = (event) => {
+        this.setState({
+            inputData: event.target.value
+        })
+    }
+
     createJob = () => {
         const pagamentos = []
         if (this.state.checkboxBoleto)
@@ -35,8 +37,8 @@ export default class PaginaCadastro extends React.Component {
         if (this.state.checkboxPayPal)
             pagamentos.push("PayPal")
     }
-    render() {
 
+    render() {
         return (
             <div>
                 <h1>Cadastre o seu serviço</h1>
