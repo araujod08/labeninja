@@ -1,6 +1,6 @@
 import React from 'react'
-import { Header } from '../Header/Header'
-import { Footer } from '../Footer/Footer'
+import  Header  from '../Header/Header'
+import  Footer  from '../Footer/Footer'
 import { ContainerMain } from './Style_PaginaServico'
 
 export class PaginaServico extends React.Component {
@@ -8,6 +8,8 @@ export class PaginaServico extends React.Component {
     render() {
         return (
             <div>
+                <Header
+                irParaHome={this.props.irParaHome} irParaCadastro={this.props.irParaCadastro}/>
                 <input
                     type="number"
                     value={this.props.minFilter}
@@ -33,6 +35,7 @@ export class PaginaServico extends React.Component {
                     <option value="decrescente">Preço</option>
                     <option value="decrescente">Data</option>
                 </select>
+                <Footer/>
             </div>
         )
     }

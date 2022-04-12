@@ -38,6 +38,7 @@ export default class App extends React.Component {
         return (
             <div>
                 {this.escolheTela()}
+                
             </div>
         )
     }
