@@ -1,6 +1,13 @@
 import React from 'react'
 import styled from "styled-components"
+import Header from '../Header/Header'
+import  Footer  from '../Footer/Footer'
 
+const DivContainer = styled.div`
+    margin: 50px;
+    border: 2px solid black;
+    text-align: center;
+`
 
 export default class PaginaCadastro extends React.Component {
     state = {
@@ -36,11 +43,10 @@ export default class PaginaCadastro extends React.Component {
             pagamentos.push("PayPal")
     }
     render() {
-
         return (
             <div>
                 <h1>Cadastre o seu serviço</h1>
-                <div>
+                <DivContainer>
                     <input
                         placeholder='titulo'
                         value=''
@@ -112,7 +118,7 @@ export default class PaginaCadastro extends React.Component {
                         />
                         <label for="pix">Pix</label>
                     </div>
-                </div>
+                </DivContainer>
             </div>
         )
     }
