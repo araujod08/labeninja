@@ -5,33 +5,32 @@ import Instagram from '../img/instagram.png'
 import Facebook from '../img/facebook.png'
 import Twitter from '../img/Twitter.png'
 
-
 const DivFooter = styled.div`
-    background-color:pink;
+    background-color: #250045;
     height: 15vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 
 `
 const ContainerLogo = styled.div`
     display: flex;
     align-items: center;
-img{
-    width: 100px;
-    padding: 10px;
-    
-}
-h1{
-    padding:0 17px;  
-}
+    img{
+        width: 100px;
+        padding: 10px; 
+    }
+    h1{
+        padding: 10px;
+        color: white;
+    }
 `
 const ContainerRedes =styled.div`
     display: flex;
-img{
-    width: 80px;
-    padding: 15px;
-}
+    img{
+        width: 60px;
+        padding: 15px;
+    }
 `
 
 export default class Footer extends React.Component {

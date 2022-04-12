@@ -1,7 +1,6 @@
 import React from 'react'
 import  Header  from '../Header/Header'
 import  Footer  from '../Footer/Footer'
-import { ContainerMain } from './Style_PaginaServico'
 
 export class PaginaServico extends React.Component {
 
