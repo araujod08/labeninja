@@ -3,6 +3,7 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import CardServicos from './CardServicos'
 import axios from 'axios'
+import CardDetalhes from './CardDetalhes'
 
 const BaseUrl = 'https://labeninjas.herokuapp.com'
 const headers = {
@@ -20,15 +21,6 @@ export class PaginaServico extends React.Component {
         this.getAllJobs()
     }
 
-    // getAllJobs = async () => {
-    //     try {
-    //         const response = await axios.get(`${BaseUrl}/jobs`, headers)
-    //         this.setState({jobs: response.data.result.jobs})
-    //     } catch (err) {
-    //         console.log(err.response)
-    //         alert('Ocorreu um erro, tente novamente')
-    //     }
-    // }
 
     getAllJobs = () => {
         axios.get(`${BaseUrl}/jobs`, headers)
@@ -78,6 +70,9 @@ export class PaginaServico extends React.Component {
                 <CardServicos
                     arrayDeServicos={this.state.jobs}
                 />
+                {/* <CardDetalhes
+                    arrayDeServicos={this.state.jobs}
+                /> */}
                 <Footer />
             </div>
         )
