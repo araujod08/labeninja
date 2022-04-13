@@ -1,8 +1,8 @@
 import React from 'react'
 
 import axios from 'axios'
-
 import styled from "styled-components"
+
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 
@@ -51,7 +51,7 @@ export default class PaginaCadastro extends React.Component {
         this.setState({
             inputData: event.target.value
         })
-        console.log(this.state.inputData)
+
     }
     onChangePagamentoCartaoDeCredito = (event) => {
         !this.state.checkboxCartaodeCredito ? this.setState({ checkboxCartaodeCredito: event.target.value }) : this.setState({ checkboxCartaodeCredito: '' })
@@ -73,26 +73,14 @@ export default class PaginaCadastro extends React.Component {
         !this.state.checkboxPix ? this.setState({ checkboxPix: event.target.value }) : this.setState({ checkboxPix: '' })
 
     }
-    setPaymentMetods = () => {
-        const pagamentos = []
-        if (this.state.checkboxBoleto)
-            pagamentos.push("Boleto")
-
-        if (this.state.checkboxCartaodeCredito)
-            pagamentos.push("Cartao de Crédito")
-
-        if (this.state.checkboxCartaodeDebito)
-            pagamentos.push("Cartao de Débito")
-
-        if (this.state.checkboxPix)
-            pagamentos.push("Pix")
-
-        if (this.state.checkboxPayPal)
-            pagamentos.push("PayPal")
-
-    }
 
     CreateJob = async () => {
+        let chegagem = false, checagem2 = false
+
+        !this.state.inputTitulo || !this.state.inputDescricao || !this.state.inputPreco || !this.state.inputData ?
+            alert("Todos os campos Título, Descrição, Preço e Data devem estar preenchidos")
+            : chegagem = true
+
         const pagamentos = []
         if (this.state.checkboxBoleto)
             pagamentos.push("Boleto")
@@ -109,19 +97,25 @@ export default class PaginaCadastro extends React.Component {
         if (this.state.checkboxPayPal)
             pagamentos.push("PayPal")
 
-        const body = {
-            title: this.state.inputTitulo,
-            description: this.state.inputDescricao,
-            price: +this.state.inputPreco,
-            paymentMethods: pagamentos,
-            dueDate: this.state.inputData
-        }
-        try {
-            const response = await axios.post(`${BaseUrl}/jobs`, body, headers)
-            alert('serviços criado com sucesso')
-        } catch (err) {
-            alert('Ocorreu um erro, por favor tente novamente mais tarde')
-            console.log(err.response)
+        pagamentos.length > 0 ? checagem2 = true : alert('Escolha um forma de pagamento para oferecer aos seus clientes')
+
+        if (chegagem && checagem2) {
+            const body = {
+                title: this.state.inputTitulo,
+                description: this.state.inputDescricao,
+                price: +this.state.inputPreco,
+                paymentMethods: pagamentos,
+                dueDate: this.state.inputData
+            }
+            try {
+                const response = await axios.post(`${BaseUrl}/jobs`, body, headers)
+                alert('serviço criado com sucesso')
+            } catch (err) {
+                console.log(err.response)
+                err.response.data.message === "A data limite para a realização do serviço deve ser maior do que a data atual" ?
+                    alert("A data limite para a realização do serviço deve ser maior do que a data atual") :
+                    alert('Ocorreu um erro, por favor tente novamente mais tarde')
+            }
         }
     }
     render() {
