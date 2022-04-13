@@ -44,29 +44,37 @@ const ContainerDiversosServicos = styled.div`
 export default class CardServicos extends React.Component {
 
     render() {
-        const diversosServicos = this.props.arrayDeServicos.map((servicos) => {
-            const newDate = servicos.dueDate.slice(0, 10).split('-').reverse().join('/')
 
-            return (
-                <ContainerCardServicos key={servicos.id}>
-                    <p>{servicos.title}</p>
-                    <DivContainer>
-                        <DivValor>
-                            <p>Valor</p>
-                            <span>R${servicos.price}</span>
-                        </DivValor>
-                        <DivPrazo>
-                            <p>Prazo</p>
-                            <span>Até {newDate}</span>
-                        </DivPrazo> 
-                    </DivContainer>
-                </ContainerCardServicos>
-            )
+        const diversosServicos = this.props.arrayDeServicos.filter(servicos => {
+            return this.props.inputMin === '' || servicos.price >= this.props.inputMin
+        }).filter(servicos => {
+            return this.props.inputMax === '' || servicos.price <= this.props.inputMax
+        }).filter(servicos => {
+            return servicos.title.toUpperCase().includes(this.props.inputName.toUpperCase())
         })
+
+            .map((servicos) => {
+                const newDate = servicos.dueDate.slice(0, 10).split('-').reverse().join('/')
+                return (
+                    <ContainerCardServicos key={servicos.id}>
+                        <p>{servicos.title}</p>
+                        <DivContainer>
+                            <DivValor>
+                                <p>Valor</p>
+                                <span>R${servicos.price}</span>
+                            </DivValor>
+                            <DivPrazo>
+                                <p>Prazo</p>
+                                <span>Até {newDate}</span>
+                            </DivPrazo>
+                        </DivContainer>
+                    </ContainerCardServicos>
+                )
+            })
         return (
             <ContainerDiversosServicos>
                 {diversosServicos}
-            </ContainerDiversosServicos>
+            </ContainerDiversosServicos >
         )
     }
 }
