@@ -14,7 +14,7 @@ const ContainerLogo = styled.div`
     display: flex;
     align-items: center;
     img{
-        width: 100px;
+        width: 80px;
         padding: 10px;   
     }
     h1{
