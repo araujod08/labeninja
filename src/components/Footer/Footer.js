@@ -29,7 +29,7 @@ const ContainerLogo = styled.div`
 const ContainerRedes = styled.div`
     display: flex;
     img{
-        width: 60px;
+        width: 80px;
         padding: 15px;
     }
 `

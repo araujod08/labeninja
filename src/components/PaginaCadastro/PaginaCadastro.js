@@ -1,12 +1,8 @@
 import React from 'react'
-
 import axios from 'axios'
 import styled from "styled-components"
-
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
-
-
 
 const BaseUrl = 'https://labeninjas.herokuapp.com'
 const headers = {

@@ -3,7 +3,6 @@ import PaginaCadastro from './components/PaginaCadastro/PaginaCadastro'
 import { PaginaServico } from './components/PaginaServico/PaginaServico'
 import Home from './components/Home/Home'
 
-
 export default class App extends React.Component {
     state = {
         telaAtual: "home",
@@ -38,7 +37,7 @@ export default class App extends React.Component {
         return (
             <div>
                 {this.escolheTela()}
-                
+
             </div>
         )
     }
