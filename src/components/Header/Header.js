@@ -31,7 +31,7 @@ const ContainerBotoes = styled.div`
         margin: 5px;
         width: 100px;
         height: 35px;
-        background-color: purple;
+        background-color: #02A499;
         color: white;
         border: none;
         transition-duration: 0.3s;

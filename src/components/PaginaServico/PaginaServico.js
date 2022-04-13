@@ -18,8 +18,7 @@ export class PaginaServico extends React.Component {
         inputMin: '',
         inputMax: '',
         inputName: '',
-        inputOrdenação: 'crescente'
-
+        inputOrdenacao: 'crescente',
     }
 
     componentDidMount = () => {
@@ -36,13 +35,12 @@ export class PaginaServico extends React.Component {
         this.setState({ inputName: event.target.value })
     }
     handleInputOrdenacao = (event) => {
-        this.setState({ inputOrdenação: event.target.value })
+        this.setState({ inputOrdenacao: event.target.value })
     }
 
     getAllJobs = () => {
         axios.get(`${BaseUrl}/jobs`, headers)
             .then((res) => {
-                // console.log(res.data.jobs)
                 this.setState({
                     jobs: res.data.jobs
                 })
@@ -77,11 +75,11 @@ export class PaginaServico extends React.Component {
                         onChange={this.handleInputName}
                         placeholder="Buscar"
                     />
-                    <select onChange={this.handleInputOrdenacao} name="sort" value={this.state.inputOrdenação}>
-                        <option value="crescente">Crescente</option>
-                        <option value="decrescente">Decrescente</option>
-                        <option value="Preço">Preço</option>
-                        <option value="Data">Data</option>
+                    <select onChange={this.handleInputOrdenacao} name="sort" value={this.state.inputOrdenacao}>
+                        <option value="crescente">Preço crescente</option>
+                        <option value="decrescente">Preço decrescente</option>
+                        <option value="titulo">Ordem alfabética</option>
+                        <option value="data">Data</option>
                     </select>
                 </div>
                 <CardServicos
@@ -89,7 +87,8 @@ export class PaginaServico extends React.Component {
                     inputMin={this.state.inputMin}
                     inputMax={this.state.inputMax}
                     inputName={this.state.inputName}
-                    inputOrdenacao={this.state.inputOrdenação}
+                    inputOrdenacao={this.state.inputOrdenacao}
+                    inputAlfabetica={this.state.inputAlfabetica}
                 />
                 <Footer />
             </div>

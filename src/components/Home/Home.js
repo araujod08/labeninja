@@ -10,12 +10,13 @@ const GlobalStyles = styled.div`
     text-decoration: none;
     height: 100vh;
     display: flex;
-    flex-direction: column;   
+    flex-direction: column;  
+    color: white; 
 `
 const DivContainer = styled.div`
     display: flex;
     flex-direction: row;
-    background-color: #6101bd;
+    background-color: #250045;
     height: 100vh;
     justify-content: space-around;
     align-items: center;
@@ -40,7 +41,7 @@ const DivDireita = styled.div`
         margin: 20px;
         width: 250px;
         height: 35px;
-        background-color: #250045;
+        background-color: #02A499;
         color: white;
         border: none;
         transition-duration: 0.4s;

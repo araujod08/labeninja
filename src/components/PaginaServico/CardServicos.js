@@ -51,8 +51,19 @@ export default class CardServicos extends React.Component {
             return this.props.inputMax === '' || servicos.price <= this.props.inputMax
         }).filter(servicos => {
             return servicos.title.toUpperCase().includes(this.props.inputName.toUpperCase())
+        }).sort((produtoA, produtoB) => {
+            switch(this.props.inputOrdenacao){
+                case 'crescente':
+                    return produtoA.price - produtoB.price 
+                case 'decrescente':
+                    return produtoB.price - produtoA.price
+                case 'titulo':
+                    return produtoA.title.localeCompare(produtoB.title)     
+                case 'data':
+                    return Date.parse(produtoA.dueDate) - Date.parse(produtoB.dueDate)     
+            }
         })
-
+        
             .map((servicos) => {
                 const newDate = servicos.dueDate.slice(0, 10).split('-').reverse().join('/')
                 return (
