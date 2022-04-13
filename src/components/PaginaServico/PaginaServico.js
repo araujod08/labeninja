@@ -14,26 +14,43 @@ const headers = {
 
 export class PaginaServico extends React.Component {
     state = {
-        jobs: []
+        jobs: [],
+        inputMin: '',
+        inputMax: '',
+        inputName: '',
+        inputOrdenação: 'crescente'
+
     }
 
     componentDidMount = () => {
         this.getAllJobs()
     }
 
+    handleInputMin = (event) => {
+        this.setState({ inputMin: event.target.value })
+    }
+    handleInputMax = (event) => {
+        this.setState({ inputMax: event.target.value })
+    }
+    handleInputName = (event) => {
+        this.setState({ inputName: event.target.value })
+    }
+    handleInputOrdenacao = (event) => {
+        this.setState({ inputOrdenação: event.target.value })
+    }
 
     getAllJobs = () => {
         axios.get(`${BaseUrl}/jobs`, headers)
-        .then((res)=>{
-            // console.log(res.data.jobs)
-            this.setState({
-                jobs: res.data.jobs
+            .then((res) => {
+                // console.log(res.data.jobs)
+                this.setState({
+                    jobs: res.data.jobs
+                })
             })
-        })
-        .catch((err)=>{
-            console.log(err)
-            alert('Ocorreu um erro, tente novamente')
-        })
+            .catch((err) => {
+                console.log(err)
+                alert('Ocorreu um erro, tente novamente')
+            })
     }
 
     render() {
@@ -42,37 +59,38 @@ export class PaginaServico extends React.Component {
                 <Header
                     irParaHome={this.props.irParaHome} irParaCadastro={this.props.irParaCadastro} />
                 <div>
-                <input
-                    type="number"
-                    value={this.props.minFilter}
-                    onChange={this.props.onChangeMinFilter}
-                    placeholder="Valor mínimo"
-                />
-                <input
-                    type="number"
-                    value={this.props.maxFilter}
-                    onChange={this.props.onChangeMaxFilter}
-                    placeholder="Valor máximo"
-                />
-                <input
-                    type="text"
-                    value={this.props.nameFilter}
-                    onChange={this.props.onChangeNameFilter}
-                    placeholder="Buscar"
-                />
-                <select onChange={this.onChangeOrdenacao} name="sort">
-                    <option value="crescente">Crescente</option>
-                    <option value="decrescente">Decrescente</option>
-                    <option value="decrescente">Preço</option>
-                    <option value="decrescente">Data</option>
-                </select>
+                    <input
+                        type="number"
+                        value={this.state.inputMin}
+                        onChange={this.handleInputMin}
+                        placeholder="Valor mínimo"
+                    />
+                    <input
+                        type="number"
+                        value={this.state.inputMax}
+                        onChange={this.handleInputMax}
+                        placeholder="Valor máximo"
+                    />
+                    <input
+                        type="text"
+                        value={this.state.inputName}
+                        onChange={this.handleInputName}
+                        placeholder="Buscar"
+                    />
+                    <select onChange={this.handleInputOrdenacao} name="sort" value={this.state.inputOrdenação}>
+                        <option value="crescente">Crescente</option>
+                        <option value="decrescente">Decrescente</option>
+                        <option value="Preço">Preço</option>
+                        <option value="Data">Data</option>
+                    </select>
                 </div>
                 <CardServicos
                     arrayDeServicos={this.state.jobs}
+                    inputMin={this.state.inputMin}
+                    inputMax={this.state.inputMax}
+                    inputName={this.state.inputName}
+                    inputOrdenacao={this.state.inputOrdenação}
                 />
-                {/* <CardDetalhes
-                    arrayDeServicos={this.state.jobs}
-                /> */}
                 <Footer />
             </div>
         )
