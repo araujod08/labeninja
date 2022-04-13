@@ -2,15 +2,44 @@ import React from 'react'
 import styled from 'styled-components'
 
 const ContainerCardServicos = styled.div`
-border: 3px outset black;
-padding: 15px;
-border-radius: 25px;
-width: 200px;
-text-align: center;
+    border-top: 10px solid #250045;
+    border-right: 10px solid #02A499;
+    border-bottom: 10px solid #250045;
+    border-left: 10px solid #02A499;
+    padding: 15px;
+    border-radius: 10px;
+    display: grid;
+    background-color: white;
+    margin: 20px;
+    p{
+        font-size: 18px;
+        font-weight: bold;
+    }
 `
+const DivContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`
+
+const DivValor = styled.div`
+    p{
+        text-decoration: underline;
+    }
+`
+
+const DivPrazo = styled.div`
+    p{
+        text-decoration: underline;
+    }
+`
+
 const ContainerDiversosServicos = styled.div`
-display: flex;
-flex-direction: row;
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(auto-fit , minmax(220px, 260px));
+    gap: 50px;
+    justify-content: center;
 `
 export default class CardServicos extends React.Component {
 
@@ -21,10 +50,16 @@ export default class CardServicos extends React.Component {
             return (
                 <ContainerCardServicos key={servicos.id}>
                     <p>{servicos.title}</p>
-                    <div>
-                        <p>{servicos.price}</p>
-                        <p>{newDate}</p>
-                    </div>
+                    <DivContainer>
+                        <DivValor>
+                            <p>Valor</p>
+                            <span>R${servicos.price}</span>
+                        </DivValor>
+                        <DivPrazo>
+                            <p>Prazo</p>
+                            <span>Até {newDate}</span>
+                        </DivPrazo> 
+                    </DivContainer>
                 </ContainerCardServicos>
             )
         })
