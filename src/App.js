@@ -7,7 +7,7 @@ import CardDetalhes from './components/PaginaServico/CardDetalhes'
 
 export default class App extends React.Component {
     state = {
-        telaAtual: "servico",
+        telaAtual: "home",
         serviceID: '',
     }
 
