@@ -39,7 +39,7 @@ const DivInputs = styled.div`
     margin: 20px;
     padding: 10px;
     input{
-        width: 300px;
+        width: 500px;
         height: 30px;
         margin: 0 auto;
         margin: 5px;
