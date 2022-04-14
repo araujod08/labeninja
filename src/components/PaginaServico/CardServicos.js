@@ -15,13 +15,18 @@ const ContainerCardServicos = styled.div`
     border-right: 10px solid #02A499;
     border-bottom: 10px solid #250045;
     border-left: 10px solid #02A499;
-    padding: 15px;
     border-radius: 10px;
     display: grid;
     background-color: white;
-    margin: 20px;
-    p{
+    margin: 25px 10px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    h1{
         font-size: 18px;
+        font-weight: bold;
+        margin: 10px;
+        text-decoration: underline;
+    }
+    p{
         font-weight: bold;
     }
 `
@@ -31,20 +36,44 @@ const DivContainer = styled.div`
     justify-content: space-between;
 `
 
+const DivEnglobaMeio = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`
+
 const DivValor = styled.div`
+    margin: 5px;
     p{
         text-decoration: underline;
     }
 `
 
 const DivPrazo = styled.div`
+    margin: 5px;
     p{
         text-decoration: underline;
     }
 `
 const DivBotoes = styled.div`
+    display: flex;
+    justify-content: space-between;
     button{
-        
+        margin: 5px;
+        width: 100px;
+        height: 30px;
+        background-color: #6101bd;
+        color: white;
+        border: none;
+        transition-duration: 0.3s;
+        border-radius: 180px;
+        margin-top: 50px;
+        cursor: pointer;
+    }
+    button:hover{
+        background-color: white;
+        color: #250045;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
     }
 `
 const ContainerDiversosServicos = styled.div`
@@ -108,16 +137,18 @@ export default class CardServicos extends React.Component {
             const newDate = servicos.dueDate.slice(0, 10).split('-').reverse().join('/')
             return (
                 <ContainerCardServicos key={servicos.id}>
-                    <p>{servicos.title}</p>
+                    <h1>{servicos.title}</h1>
                     <DivContainer>
-                        <DivValor>
-                            <p>Valor</p>
-                            <span>R${servicos.price}</span>
-                        </DivValor>
-                        <DivPrazo>
-                            <p>Prazo</p>
-                            <span>Até {newDate}</span>
-                        </DivPrazo>
+                        <DivEnglobaMeio>
+                            <DivValor>
+                                <p>Valor</p>
+                                <span>R${servicos.price}</span>
+                            </DivValor>
+                            <DivPrazo>
+                                <p>Prazo</p>
+                                <span>Até {newDate}</span>
+                            </DivPrazo>
+                        </DivEnglobaMeio>
                         <DivBotoes>
                             <button onClick={() => this.props.irParaDetalhes(servicos.id)}>
                                 Detalhes</button>
