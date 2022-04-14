@@ -43,9 +43,9 @@ export default class Footer extends React.Component {
                     <h1>Os ninjas estão a sua espera...</h1>
                 </ContainerLogo>
                 <ContainerRedes>
-                    <a href='https://www.facebook.com/profile.php?id=100080095552686' target='_blank' ><img src={Facebook} /></a>
-                    <a href='https://www.instagram.com/labninjasgrp2/' target='_blank' ><img src={Instagram} /></a>
-                    <a href='https://www.twitter.com/labninjasgrp2/' target='_blank' ><img src={Twitter} /></a>
+                    <a href='https://www.facebook.com/profile.php?id=100080095552686' target='_blank' rel="noopener noreferrer"><img src={Facebook} /> </a>
+                    <a href='https://www.instagram.com/labninjasgrp2/' target='_blank' rel="noopener noreferrer"><img src={Instagram} /></a>
+                    <a href='https://www.twitter.com/labninjasgrp2/' target='_blank' rel="noopener noreferrer"><img src={Twitter} /></a>
                 </ContainerRedes>
             </DivFooter>
         )

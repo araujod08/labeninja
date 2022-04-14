@@ -4,6 +4,7 @@ import Footer from '../Footer/Footer'
 import CardServicos from './CardServicos'
 import axios from 'axios'
 import CardDetalhes from './CardDetalhes'
+import Carrinho from './Carrinho'
 
 const BaseUrl = 'https://labeninjas.herokuapp.com'
 const headers = {
@@ -57,7 +58,7 @@ export class PaginaServico extends React.Component {
         return (
             <div>
                 <Header
-                    irParaHome={this.props.irParaHome} irParaCadastro={this.props.irParaCadastro} />
+                    irParaHome={this.props.irParaHome} irParaCadastro={this.props.irParaCadastro} irParaCarrinho={this.props.irParaCarrinho} />
                 <div>
                     <input
                         type="number"
@@ -90,7 +91,10 @@ export class PaginaServico extends React.Component {
                     inputMax={this.state.inputMax}
                     inputName={this.state.inputName}
                     inputOrdenacao={this.state.inputOrdenação}
+                    irParaCarrinho={this.props.irParaCarrinho}
                 />
+
+
                 <Footer />
             </div>
         )
