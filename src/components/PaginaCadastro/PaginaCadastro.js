@@ -18,6 +18,72 @@ const SuperContainerCadastro = styled.section`
 `
 const ContainerMain = styled.div`
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 60px auto;
+    background: #250045;
+    width: 800px;
+    border-radius: 20px;
+    box-shadow: 20px 20px 50px grey;
+`
+const DivTitulo = styled.div`
+    text-align: center;
+    color: white;
+    text-decoration: underline;
+`
+const DivInputs = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+    input{
+        width: 300px;
+        height: 30px;
+        margin: 0 auto;
+        margin: 5px;
+        border: none;
+        border-radius: 10px;
+    }
+`
+const DivPagamentos = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    h1{
+        text-decoration: underline;
+    }
+    div{
+        display: flex;
+        flex-direction: row;
+    }
+    input{
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        height: 18px;
+        width: 25px;
+        border-radius: 50%;
+    }
+    button{
+        margin: 5px;
+        width: 150px;
+        height: 35px;
+        background-color: #02A499;
+        color: white;
+        border: none;
+        transition-duration: 0.3s;
+        border-radius: 180px;
+        margin-top: 50px;
+        cursor: pointer;
+    }
+    button:hover{
+        background-color: white;
+        color: #250045;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
+    }
 `
 export default class PaginaCadastro extends React.Component {
     state = {
@@ -71,11 +137,11 @@ export default class PaginaCadastro extends React.Component {
     }
 
     CreateJob = async () => {
-        let chegagem = false, checagem2 = false
+        let checagem = false, checagem2 = false
 
         !this.state.inputTitulo || !this.state.inputDescricao || !this.state.inputPreco || !this.state.inputData ?
             alert("Todos os campos Título, Descrição, Preço e Data devem estar preenchidos")
-            : chegagem = true
+            : checagem = true
 
         const pagamentos = []
         if (this.state.checkboxBoleto)
@@ -95,7 +161,7 @@ export default class PaginaCadastro extends React.Component {
 
         pagamentos.length > 0 ? checagem2 = true : alert('Escolha um forma de pagamento para oferecer aos seus clientes')
 
-        if (chegagem && checagem2) {
+        if (checagem && checagem2) {
             const body = {
                 title: this.state.inputTitulo,
                 description: this.state.inputDescricao,
@@ -120,20 +186,22 @@ export default class PaginaCadastro extends React.Component {
                 <Header
                     irParaHome={this.props.irParaHome} irParaServico={this.props.irParaServico} />
                 <ContainerMain>
+                    <DivTitulo>
                     <h1>Cadastre o seu serviço</h1>
-                    <div>
+                    </DivTitulo>
+                    <DivInputs>
                         <input
-                            placeholder='titulo'
+                            placeholder='Título'
                             value={this.state.inputTitulo}
                             onChange={this.onChangeInputTitulo}
                         />
                         <input
-                            placeholder='descrição'
+                            placeholder='Descrição'
                             value={this.state.inputDescricao}
                             onChange={this.onChangeInputDescricao}
                         />
                         <input
-                            placeholder='preço'
+                            placeholder='Preço'
                             type='number'
                             value={this.state.inputPreco}
                             onChange={this.onChangeInputPreco}
@@ -144,8 +212,10 @@ export default class PaginaCadastro extends React.Component {
                             type='date'
                             min={new Date().toISOString().slice(0, 10)}
                         />
-                        <div>
-                            <p>Formas de Pagamentos:</p>
+                        </DivInputs>
+                        <DivPagamentos>             
+                            <h1>Formas de Pagamentos:</h1>
+                            <div>
                             <input
                                 type="checkbox"
                                 id="cartao-de-credito"
@@ -154,7 +224,6 @@ export default class PaginaCadastro extends React.Component {
                                 onChange={this.onChangePagamentoCartaoDeCredito}
                             />
                             <label htmlFor="cartao-de-credito">Cartão de crédito</label>
-                        </div>
                         <div>
                             <input
                                 type="checkbox"
@@ -185,7 +254,6 @@ export default class PaginaCadastro extends React.Component {
                             />
                             <label htmlFor="boleto">Boleto</label>
                         </div>
-                        <div>
                             <input
                                 type="checkbox"
                                 id="pix"
@@ -194,14 +262,12 @@ export default class PaginaCadastro extends React.Component {
                                 onChange={this.onChangePagamentoPix}
                             />
                             <label htmlFor="pix">Pix</label>
-                        </div>
-                    </div>
-                    <button onClick={this.CreateJob}>Criar Serviço</button>
+                            </div>
+                            <button onClick={this.CreateJob}>Criar Serviço</button>
+                        </DivPagamentos>
                 </ContainerMain>
-
                 <Footer />
             </SuperContainerCadastro>
-
         )
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
+import CardDetalhes from './CardDetalhes'
 
 const BaseUrl = 'https://labeninjas.herokuapp.com'
 const headers = {
@@ -55,7 +56,8 @@ const ContainerDiversosServicos = styled.div`
 `
 export default class CardServicos extends React.Component {
     state = {
-        cart: []
+        cart: [],
+        jobsDetails: [],
     }
     updateJob = async (serviceID, serviceTaken) => {
         let contracted
@@ -79,6 +81,20 @@ export default class CardServicos extends React.Component {
             alert('Ocoreu um erro, por favor tente novamente mais tarde2')
         }
     }
+
+    getServiceById = async (serviceID) => {
+        try {
+            const response = await axios.get(`${BaseUrl}jobs/${serviceID}`, headers)
+
+            const copia = [...this.state.jobsDetails, response.data]
+            this.setState({ jobsDetails: copia })
+
+        } catch (err) {
+            console.log(err.response)
+            alert(err.response.data.message)
+        }
+    }
+
     render() {
 
         const diversosServicos = this.props.arrayDeServicos.filter(servicos => {
@@ -87,6 +103,7 @@ export default class CardServicos extends React.Component {
             return this.props.inputMax === '' || servicos.price <= this.props.inputMax
         }).filter(servicos => {
             return servicos.title.toUpperCase().includes(this.props.inputName.toUpperCase())
+
         }).map((servicos) => {
             const newDate = servicos.dueDate.slice(0, 10).split('-').reverse().join('/')
             return (
@@ -102,6 +119,8 @@ export default class CardServicos extends React.Component {
                             <span>Até {newDate}</span>
                         </DivPrazo>
                         <DivBotoes>
+                            <button onClick={() => this.props.irParaDetalhes(servicos.id)}>
+                                Detalhes</button>
                             <button onClick={() => this.updateJob(servicos.id, servicos.taken)}>Comprar</button>
                         </DivBotoes>
                     </DivContainer>

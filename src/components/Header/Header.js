@@ -20,6 +20,7 @@ const ContainerLogo = styled.div`
     h1{
         padding: 10px;
         color: white;
+        font-size: 20px;
 }
 `
 
@@ -31,11 +32,12 @@ const ContainerBotoes = styled.div`
         margin: 5px;
         width: 100px;
         height: 35px;
-        background-color: purple;
+        background-color: #02A499;
         color: white;
         border: none;
         transition-duration: 0.3s;
         border-radius: 180px;
+        cursor: pointer;
     }
     button:hover{
         background-color: white;
@@ -44,7 +46,7 @@ const ContainerBotoes = styled.div`
         img{
         width: 80px;
         padding: 15px;
-    }
+        }
     }
 `
 
