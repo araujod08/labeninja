@@ -24,12 +24,13 @@ const ContainerLogo = styled.div`
     h1{
         padding: 10px;
         color: white;
+        font-size: 20px;
     }
 `
 const ContainerRedes = styled.div`
     display: flex;
     img{
-        width: 80px;
+        width: 50px;
         padding: 15px;
     }
 `
