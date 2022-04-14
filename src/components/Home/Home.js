@@ -46,6 +46,7 @@ const DivDireita = styled.div`
         border: none;
         transition-duration: 0.4s;
         border-radius: 180px;
+        cursor: pointer;
     }
     button:hover{
         background-color: white;
@@ -66,10 +67,10 @@ export default class Home extends React.Component {
                 <DivContainer>
                     <DivEsquerda>
                         <img src={myImg} alt="logo labeninjas"></img>
-                        <h1>Ninjas estão por toda parte.</h1>
+                        <h1>Os ninjas estão por toda parte.</h1>
                     </DivEsquerda>
                     <DivDireita>
-                        <h1>Se você é um deles, bem-vindo.<br></br>Se precisa de um deles, bem-vindo também.</h1>
+                        <h1>Se você é um deles, bem-vindo.<br></br>Se precisar de algum deles, bem-vindo também.</h1>
                         <DivBotoes>
                             <button onClick={this.props.irParaCadastro}>
                                 Sou um ninja
