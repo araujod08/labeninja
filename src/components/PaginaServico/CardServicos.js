@@ -54,7 +54,6 @@ const ContainerDiversosServicos = styled.div`
     gap: 50px;
     justify-content: center;
 `
-
 export default class CardServicos extends React.Component {
     state = {
         cart: [],
@@ -134,5 +133,6 @@ return (
         {diversosServicos}
     </ContainerDiversosServicos >
 )
+
     }
 }

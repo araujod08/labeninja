@@ -20,7 +20,7 @@ export default class App extends React.Component {
             case "servico":
                 return <PaginaServico irParaHome={this.irParaHome} irParaCadastro={this.irParaCadastro} irParaDetalhes={this.irParaDetalhes} irParaCarrinho={this.irParaCarrinho} />
             case 'carrinho':
-                return <Carrinho irParaServico={this.irParaServico} />
+                return <Carrinho irParaServico={this.irParaServico} irParaHome={this.irParaHome} irParaCadastro={this.irParaCadastro} />
             case "detalhe":
                 return <CardDetalhes irParaHome={this.irParaHome} irParaServico={this.irParaServico} irParaCadastro={this.irParaCadastro} irParaDetalhes={this.irParaDetalhes} irParaCarrinho={this.irParaCarrinho} id={this.state.serviceID} />
             default:
