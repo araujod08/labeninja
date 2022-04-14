@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
+import CardDetalhes from './CardDetalhes'
 
 const ContainerCardServicos = styled.div`
     border-top: 10px solid #250045;
@@ -41,7 +43,31 @@ const ContainerDiversosServicos = styled.div`
     gap: 50px;
     justify-content: center;
 `
+
+const BaseUrl = 'https://labeninjas.herokuapp.com/'
+const headers = {
+    headers: {
+        Authorization: '9f938b9f-4c97-4e2f-b675-1be76ea15bff'
+    }
+}
+
 export default class CardServicos extends React.Component {
+    state = {
+        jobsDetails: [],
+    }
+
+    getServiceById = async (serviceID) => {
+        try {
+            const response = await axios.get(`${BaseUrl}jobs/${serviceID}`, headers)
+
+            const copia = [...this.state.jobsDetails, response.data]
+            this.setState({ jobsDetails: copia })
+
+        } catch (err) {
+            console.log(err.response)
+            alert(err.response.data.message)
+        }
+    }
 
     render() {
 
@@ -52,18 +78,18 @@ export default class CardServicos extends React.Component {
         }).filter(servicos => {
             return servicos.title.toUpperCase().includes(this.props.inputName.toUpperCase())
         }).sort((produtoA, produtoB) => {
-            switch(this.props.inputOrdenacao){
+            switch (this.props.inputOrdenacao) {
                 case 'crescente':
-                    return produtoA.price - produtoB.price 
+                    return produtoA.price - produtoB.price
                 case 'decrescente':
                     return produtoB.price - produtoA.price
                 case 'titulo':
-                    return produtoA.title.localeCompare(produtoB.title)     
+                    return produtoA.title.localeCompare(produtoB.title)
                 case 'data':
-                    return Date.parse(produtoA.dueDate) - Date.parse(produtoB.dueDate)     
+                    return Date.parse(produtoA.dueDate) - Date.parse(produtoB.dueDate)
             }
         })
-        
+
             .map((servicos) => {
                 const newDate = servicos.dueDate.slice(0, 10).split('-').reverse().join('/')
                 return (
@@ -78,6 +104,9 @@ export default class CardServicos extends React.Component {
                                 <p>Prazo</p>
                                 <span>Até {newDate}</span>
                             </DivPrazo>
+                            <button onClick={()=>this.props.irParaDetalhes (servicos.id)}>
+                                Detalhes</button>
+                            {/* <CardDetalhes irParaDetalhes={this.props.irParaDetalhes} jobsDetails={this.state.jobsDetails} /> */}
                         </DivContainer>
                     </ContainerCardServicos>
                 )

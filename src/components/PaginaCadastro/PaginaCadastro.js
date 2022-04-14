@@ -137,11 +137,11 @@ export default class PaginaCadastro extends React.Component {
     }
 
     CreateJob = async () => {
-        let chegagem = false, checagem2 = false
+        let checagem = false, checagem2 = false
 
         !this.state.inputTitulo || !this.state.inputDescricao || !this.state.inputPreco || !this.state.inputData ?
             alert("Todos os campos Título, Descrição, Preço e Data devem estar preenchidos")
-            : chegagem = true
+            : checagem = true
 
         const pagamentos = []
         if (this.state.checkboxBoleto)
@@ -161,7 +161,7 @@ export default class PaginaCadastro extends React.Component {
 
         pagamentos.length > 0 ? checagem2 = true : alert('Escolha um forma de pagamento para oferecer aos seus clientes')
 
-        if (chegagem && checagem2) {
+        if (checagem && checagem2) {
             const body = {
                 title: this.state.inputTitulo,
                 description: this.state.inputDescricao,

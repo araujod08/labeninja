@@ -89,6 +89,7 @@ export class PaginaServico extends React.Component {
                     inputName={this.state.inputName}
                     inputOrdenacao={this.state.inputOrdenacao}
                     inputAlfabetica={this.state.inputAlfabetica}
+                    irParaDetalhes={this.props.irParaDetalhes}
                 />
                 <Footer />
             </div>
