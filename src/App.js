@@ -2,6 +2,7 @@ import React from 'react'
 import PaginaCadastro from './components/PaginaCadastro/PaginaCadastro'
 import { PaginaServico } from './components/PaginaServico/PaginaServico'
 import Home from './components/Home/Home'
+import Carrinho from './components/PaginaServico/Carrinho'
 import CardDetalhes from './components/PaginaServico/CardDetalhes'
 
 export default class App extends React.Component {
@@ -18,6 +19,8 @@ export default class App extends React.Component {
                 return <PaginaCadastro irParaHome={this.irParaHome} irParaServico={this.irParaServico} irParaCadastro={this.irParaCadastro} irParaDetalhes={this.irParaDetalhes} irParaCarrinho={this.irParaCarrinho} />
             case "servico":
                 return <PaginaServico irParaHome={this.irParaHome} irParaCadastro={this.irParaCadastro} irParaDetalhes={this.irParaDetalhes} irParaCarrinho={this.irParaCarrinho} />
+            case 'carrinho':
+                return <Carrinho irParaServico={this.irParaServico} />
             case "detalhe":
                 return <CardDetalhes irParaHome={this.irParaHome} irParaServico={this.irParaServico} irParaCadastro={this.irParaCadastro} irParaDetalhes={this.irParaDetalhes} irParaCarrinho={this.irParaCarrinho} id={this.state.serviceID} />
             default:
@@ -35,6 +38,10 @@ export default class App extends React.Component {
 
     irParaHome = () => {
         this.setState({ telaAtual: "home" })
+    }
+
+    irParaCarrinho = () => {
+        this.setState({ telaAtual: "carrinho" })
     }
 
     irParaDetalhes = (e) => {

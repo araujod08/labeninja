@@ -62,7 +62,7 @@ export default class Header extends React.Component {
                     <button onClick={this.props.irParaHome}>Home</button>
                     <button onClick={this.props.irParaCadastro}>Cadastro</button>
                     <button onClick={this.props.irParaServico}>Serviços</button>
-                    <button>Carrinho</button>
+                    <button onClick={this.props.irParaCarrinho}>Carrinho</button>
                 </ContainerBotoes>
             </DivHeader>
         )

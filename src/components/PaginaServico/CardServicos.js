@@ -3,6 +3,13 @@ import styled from 'styled-components'
 import axios from 'axios'
 import CardDetalhes from './CardDetalhes'
 
+const BaseUrl = 'https://labeninjas.herokuapp.com'
+const headers = {
+    headers: {
+        Authorization: '9f938b9f-4c97-4e2f-b675-1be76ea15bff'
+    }
+}
+
 const ContainerCardServicos = styled.div`
     border-top: 10px solid #250045;
     border-right: 10px solid #02A499;
@@ -20,7 +27,7 @@ const ContainerCardServicos = styled.div`
 `
 const DivContainer = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
 `
 
@@ -35,7 +42,11 @@ const DivPrazo = styled.div`
         text-decoration: underline;
     }
 `
-
+const DivBotoes = styled.div`
+    button{
+        
+    }
+`
 const ContainerDiversosServicos = styled.div`
     background-color: white;
     display: grid;
@@ -53,7 +64,30 @@ const headers = {
 
 export default class CardServicos extends React.Component {
     state = {
+        cart: [],
         jobsDetails: [],
+    }
+    updateJob = async (serviceID, serviceTaken) => {
+        let contracted
+        serviceTaken ? contracted = false : contracted = true
+        const body = {
+            taken: contracted
+        }
+        try {
+            await axios.post(`${BaseUrl}/jobs/${serviceID}`, body, headers)
+            this.getServiceById(serviceID)
+        } catch (err) {
+            console.log(err.response)
+            alert('Ocoreu um erro, por favor tente novamente mais tarde1')
+        }
+    }
+    getServiceById = async (serviceID) => {
+        try {
+            await axios.get(`${BaseUrl}/jobs/${serviceID}`, headers)
+        } catch (err) {
+            console.log(err.response)
+            alert('Ocoreu um erro, por favor tente novamente mais tarde2')
+        }
     }
 
     getServiceById = async (serviceID) => {
@@ -77,6 +111,29 @@ export default class CardServicos extends React.Component {
             return this.props.inputMax === '' || servicos.price <= this.props.inputMax
         }).filter(servicos => {
             return servicos.title.toUpperCase().includes(this.props.inputName.toUpperCase())
+
+        }).map((servicos) => {
+            const newDate = servicos.dueDate.slice(0, 10).split('-').reverse().join('/')
+            return (
+                <ContainerCardServicos key={servicos.id}>
+                    <p>{servicos.title}</p>
+                    <DivContainer>
+                        <DivValor>
+                            <p>Valor</p>
+                            <span>R${servicos.price}</span>
+                        </DivValor>
+                        <DivPrazo>
+                            <p>Prazo</p>
+                            <span>Até {newDate}</span>
+                        </DivPrazo>
+                        <DivBotoes>
+                            <button onClick={() => this.updateJob(servicos.id, servicos.taken)}>Comprar</button>
+                        </DivBotoes>
+                    </DivContainer>
+                </ContainerCardServicos>
+            )
+        })
+
         }).sort((produtoA, produtoB) => {
             switch (this.props.inputOrdenacao) {
                 case 'crescente':
@@ -111,6 +168,7 @@ export default class CardServicos extends React.Component {
                     </ContainerCardServicos>
                 )
             })
+
         return (
             <ContainerDiversosServicos>
                 {diversosServicos}
