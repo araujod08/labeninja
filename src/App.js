@@ -18,7 +18,7 @@ export default class App extends React.Component {
             case "servico":
                 return <PaginaServico irParaHome={this.irParaHome} irParaCadastro={this.irParaCadastro} irParaCarrinho={this.irParaCarrinho} />
             case 'carrinho':
-                return <Carrinho irParaServico={this.irParaServico} />
+                return <Carrinho irParaServico={this.irParaServico} irParaHome={this.irParaHome} irParaCadastro={this.irParaCadastro} />
             default:
                 return <div>Erro! Os ninjas roubaram a pagina.</div>
         }

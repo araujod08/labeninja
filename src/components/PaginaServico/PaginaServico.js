@@ -93,8 +93,6 @@ export class PaginaServico extends React.Component {
                     inputOrdenacao={this.state.inputOrdenação}
                     irParaCarrinho={this.props.irParaCarrinho}
                 />
-
-
                 <Footer />
             </div>
         )

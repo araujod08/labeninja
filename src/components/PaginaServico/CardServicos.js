@@ -108,7 +108,6 @@ export default class CardServicos extends React.Component {
                 </ContainerCardServicos>
             )
         })
-
         return (
             <ContainerDiversosServicos>
                 {diversosServicos}
