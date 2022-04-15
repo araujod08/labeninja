@@ -55,7 +55,7 @@ export default class Header extends React.Component {
         return (
             <DivHeader>
                 <ContainerLogo>
-                    <img src={myImg} />
+                    <img src={myImg} alt='Logo' />
                     <h1>LabeNinjas</h1>
                 </ContainerLogo>
                 <ContainerBotoes>

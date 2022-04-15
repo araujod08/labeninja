@@ -40,13 +40,13 @@ export default class Footer extends React.Component {
         return (
             <DivFooter>
                 <ContainerLogo>
-                    <img src={myImg} />
+                    <img src={myImg} alt='Logo' />
                     <h1>Os ninjas estão a sua espera...</h1>
                 </ContainerLogo>
                 <ContainerRedes>
-                    <a href='https://www.facebook.com/profile.php?id=100080095552686' target='_blank' rel="noopener noreferrer"><img src={Facebook} /> </a>
-                    <a href='https://www.instagram.com/labninjasgrp2/' target='_blank' rel="noopener noreferrer"><img src={Instagram} /></a>
-                    <a href='https://www.twitter.com/labninjasgrp2/' target='_blank' rel="noopener noreferrer"><img src={Twitter} /></a>
+                    <a href='https://www.facebook.com/profile.php?id=100080095552686' target='_blank' rel="noopener noreferrer"><img src={Facebook} alt='Icone do FaceBook' /> </a>
+                    <a href='https://www.instagram.com/labninjasgrp2/' target='_blank' rel="noopener noreferrer"><img src={Instagram} alt='Icone do Instagran' /></a>
+                    <a href='https://www.twitter.com/labninjasgrp2/' target='_blank' rel="noopener noreferrer"><img src={Twitter} alt='Icone do Twitter' /></a>
                 </ContainerRedes>
             </DivFooter>
         )

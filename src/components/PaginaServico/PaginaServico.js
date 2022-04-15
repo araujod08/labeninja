@@ -4,9 +4,15 @@ import Footer from '../Footer/Footer'
 import CardServicos from './CardServicos'
 import axios from 'axios'
 import styled from 'styled-components'
-import CardDetalhes from './CardDetalhes'
-import Carrinho from './Carrinho'
 
+const MegaContainerServicos = styled.section`
+    flex-direction: column;
+    display: flex;
+    height: 100vh;
+`
+const SuperContainerServicos = styled.div`
+    flex-grow: 1;
+`
 const DivContainerFiltro = styled.div`
     background-color: white;
 `
@@ -33,7 +39,6 @@ const DivFiltro = styled.div`
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
     }
 `
-
 const BaseUrl = 'https://labeninjas.herokuapp.com'
 const headers = {
     headers: {
@@ -79,52 +84,77 @@ export class PaginaServico extends React.Component {
                 alert('Ocorreu um erro, tente novamente')
             })
     }
+    updateJob = async (serviceID, serviceTaken) => {
+        const body = {
+            taken: !serviceTaken
+        }
+        try {
+            await axios.post(`${BaseUrl}/jobs/${serviceID}`, body, headers)
+            this.getAllJobs()
+        } catch (err) {
+            console.log(err.response)
+            alert('Ocoreu um erro, por favor tente novamente mais tarde1')
+        }
+    }
+    updateTaken = (id, taken) => {
+        if (!taken) {
+            const jobUpdate = this.state.jobs.map(job => job.id === id ? { ...job, taken: true } : job)
+            this.setState({ jobs: jobUpdate })
+            this.updateJob(id, taken)
+        } else {
+            alert('você já adicionou esse serviço ao carrinho')
+        }
+    }
 
     render() {
         return (
-            <div>
+            <MegaContainerServicos>
                 <Header
                     irParaHome={this.props.irParaHome} irParaCadastro={this.props.irParaCadastro} irParaCarrinho={this.props.irParaCarrinho} />
-                <DivContainerFiltro>
-                    <DivFiltro>
-                        <input
-                            type="number"
-                            value={this.state.inputMin}
-                            onChange={this.handleInputMin}
-                            placeholder="Valor mínimo"
-                        />
-                        <input
-                            type="number"
-                            value={this.state.inputMax}
-                            onChange={this.handleInputMax}
-                            placeholder="Valor máximo"
-                        />
-                        <input
-                            type="text"
-                            value={this.state.inputName}
-                            onChange={this.handleInputName}
-                            placeholder="Buscar"
-                        />
-                        <select onChange={this.handleInputOrdenacao} name="sort" value={this.state.inputOrdenacao}>
-                            <option value="crescente">Preço crescente</option>
-                            <option value="decrescente">Preço decrescente</option>
-                            <option value="titulo">Ordem alfabética</option>
-                            <option value="data">Data</option>
-                        </select>
-                    </DivFiltro>
-                </DivContainerFiltro>
-                <CardServicos
-                    arrayDeServicos={this.state.jobs}
-                    inputMin={this.state.inputMin}
-                    inputMax={this.state.inputMax}
-                    inputName={this.state.inputName}
-                    inputOrdenacao={this.state.inputOrdenacao}
-                    irParaCarrinho={this.props.irParaCarrinho}
-                    inputAlfabetica={this.state.inputAlfabetica}
-                    irParaDetalhes={this.props.irParaDetalhes}
-                />
+                <SuperContainerServicos>
+                    <DivContainerFiltro>
+                        <DivFiltro>
+                            <input
+                                type="number"
+                                value={this.state.inputMin}
+                                onChange={this.handleInputMin}
+                                placeholder="Valor mínimo"
+                            />
+                            <input
+                                type="number"
+                                value={this.state.inputMax}
+                                onChange={this.handleInputMax}
+                                placeholder="Valor máximo"
+                            />
+                            <input
+                                type="text"
+                                value={this.state.inputName}
+                                onChange={this.handleInputName}
+                                placeholder="Buscar"
+                            />
+                            <select onChange={this.handleInputOrdenacao} name="sort" value={this.state.inputOrdenacao}>
+                                <option value="crescente">Preço crescente</option>
+                                <option value="decrescente">Preço decrescente</option>
+                                <option value="titulo">Ordem alfabética</option>
+                                <option value="data">Data</option>
+                            </select>
+                        </DivFiltro>
+                    </DivContainerFiltro>
+                    <CardServicos
+                        arrayDeServicos={this.state.jobs}
+                        inputMin={this.state.inputMin}
+                        inputMax={this.state.inputMax}
+                        inputName={this.state.inputName}
+                        inputOrdenacao={this.state.inputOrdenacao}
+                        irParaCarrinho={this.props.irParaCarrinho}
+                        inputAlfabetica={this.state.inputAlfabetica}
+                        irParaDetalhes={this.props.irParaDetalhes}
+                        getAllJobs={this.getAllJobs}
+                        updateTaken={this.updateTaken}
+                    />
+                </SuperContainerServicos>
                 <Footer />
-            </div>
+            </MegaContainerServicos>
         )
     }
 }

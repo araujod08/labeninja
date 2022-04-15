@@ -4,6 +4,11 @@ import styled from "styled-components";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
+const SuperContainer = styled.section`
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+`
 const DivGlobal = styled.div`
     flex-grow: 1;
     display: flex;
@@ -79,10 +84,8 @@ export default class Carrinho extends React.Component {
     }
 
     updateJob = async (serviceID, serviceTaken) => {
-        let contracted
-        serviceTaken ? contracted = false : contracted = true
         const body = {
-            taken: contracted
+            taken: !serviceTaken
         }
         try {
             await axios.post(`${BaseUrl}/jobs/${serviceID}`, body, headers)
@@ -93,35 +96,30 @@ export default class Carrinho extends React.Component {
         }
     }
 
-    contratar = () => {
-        alert('serviço contrartado com sucesso')
-    }
-
     render() {
-        const service = this.state.cart.filter(service => service.taken === true).map(service => {
+        const service = this.state.cart.length > 0 ? this.state.cart.filter(service => service.taken === true).map(service => {
             return (
-                <DivGlobal>
-                    <DivCard>
-                        <DivTitulo>
-                            <h1>{service.title}</h1>
-                            <h2>R$ {service.price}</h2>
-                        </DivTitulo>
-                        <DivBotoes>
-                            <button onClick={this.contratar}>Contratar</button>
-                            <button onClick={() => this.updateJob(service.id, service.taken)}>Remover</button>
-                        </DivBotoes>
-                    </DivCard>
-                </DivGlobal>
+                <DivCard key={service.id}>
+                    <DivTitulo>
+                        <h1>{service.title}</h1>
+                        <h2>R$ {service.price}</h2>
+                    </DivTitulo>
+                    <DivBotoes >
+                        <button onClick={() => alert('serviço contrartado com sucesso')}>Contratar</button>
+                        <button onClick={() => this.updateJob(service.id, service.taken)}>Remover</button>
+                    </DivBotoes>
+                </DivCard>
             )
-        })
+        }) : <p> Carregando </p>
+        const vazio = <p>O carrinho está vazio</p>
         return (
-            <div>
+            <SuperContainer>
                 <Header irParaServico={this.props.irParaServico} irParaHome={this.props.irParaHome} irParaCadastro={this.props.irParaCadastro} />
-                    <DivGlobal>
-                        {service}
-                    </DivGlobal>
+                <DivGlobal>
+                    {(service.length === 0 && this.state.cart.length > 0) ? vazio : service}
+                </DivGlobal>
                 <Footer />
-            </div>
+            </SuperContainer>
         )
     }
 }

@@ -1,14 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
-import CardDetalhes from './CardDetalhes'
-
-const BaseUrl = 'https://labeninjas.herokuapp.com'
-const headers = {
-    headers: {
-        Authorization: '9f938b9f-4c97-4e2f-b675-1be76ea15bff'
-    }
-}
 
 const ContainerCardServicos = styled.div`
     border-top: 10px solid #250045;
@@ -58,7 +49,7 @@ const DivPrazo = styled.div`
 const DivBotoes = styled.div`
     display: flex;
     justify-content: space-between;
-    button{
+    button:nth-child(1){
         margin: 5px;
         width: 100px;
         height: 30px;
@@ -69,6 +60,19 @@ const DivBotoes = styled.div`
         border-radius: 180px;
         margin-top: 50px;
         cursor: pointer;
+    }
+    button:nth-child(2){
+        background-color: ${({ taken }) => taken ? `white` : `#6101bd`};
+        color: ${({ taken }) => taken ? `#250045` : `white`};
+        margin: 5px;
+        width: 100px;
+        height: 30px;
+        border: none;
+        transition-duration: 0.3s;
+        border-radius: 180px;
+        margin-top: 50px;
+        cursor: pointer;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
     }
     button:hover{
         background-color: white;
@@ -83,55 +87,28 @@ const ContainerDiversosServicos = styled.div`
     gap: 50px;
     justify-content: center;
 `
+
 export default class CardServicos extends React.Component {
-    state = {
-        cart: [],
-        jobsDetails: [],
-    }
-    updateJob = async (serviceID, serviceTaken) => {
-        let contracted
-        serviceTaken ? contracted = false : contracted = true
-        const body = {
-            taken: contracted
-        }
-        try {
-            await axios.post(`${BaseUrl}/jobs/${serviceID}`, body, headers)
-            this.getServiceById(serviceID)
-        } catch (err) {
-            console.log(err.response)
-            alert('Ocoreu um erro, por favor tente novamente mais tarde1')
-        }
-    }
-    getServiceById = async (serviceID) => {
-        try {
-            await axios.get(`${BaseUrl}/jobs/${serviceID}`, headers)
-        } catch (err) {
-            console.log(err.response)
-            alert('Ocoreu um erro, por favor tente novamente mais tarde2')
-        }
-    }
-
-    getServiceById = async (serviceID) => {
-        try {
-            const response = await axios.get(`${BaseUrl}jobs/${serviceID}`, headers)
-
-            const copia = [...this.state.jobsDetails, response.data]
-            this.setState({ jobsDetails: copia })
-
-        } catch (err) {
-            console.log(err.response)
-        }
-    }
-
     render() {
-
-        const diversosServicos = this.props.arrayDeServicos.filter(servicos => {
+        const diversosServicos = this.props.arrayDeServicos.length > 0 ? this.props.arrayDeServicos.filter(servicos => {
             return this.props.inputMin === '' || servicos.price >= this.props.inputMin
         }).filter(servicos => {
             return this.props.inputMax === '' || servicos.price <= this.props.inputMax
         }).filter(servicos => {
             return servicos.title.toUpperCase().includes(this.props.inputName.toUpperCase())
-
+        }).sort((produtoA, produtoB) => {
+            switch (this.props.inputOrdenacao) {
+                case 'crescente':
+                    return produtoA.price - produtoB.price
+                case 'decrescente':
+                    return produtoB.price - produtoA.price
+                case 'titulo':
+                    return produtoA.title.localeCompare(produtoB.title)
+                case 'data':
+                    return Date.parse(produtoA.dueDate) - Date.parse(produtoB.dueDate)
+                default:
+                    return produtoA.price - produtoB.price
+            }
         }).map((servicos) => {
             const newDate = servicos.dueDate.slice(0, 10).split('-').reverse().join('/')
             return (
@@ -148,20 +125,19 @@ export default class CardServicos extends React.Component {
                                 <span>Até {newDate}</span>
                             </DivPrazo>
                         </DivEnglobaMeio>
-                        <DivBotoes>
+                        <DivBotoes taken={servicos.taken}>
                             <button onClick={() => this.props.irParaDetalhes(servicos.id)}>
                                 Detalhes</button>
-                            <button onClick={() => this.updateJob(servicos.id, servicos.taken)}>Comprar</button>
+                            <button onClick={() => this.props.updateTaken(servicos.id, servicos.taken)}>Comprar</button>
                         </DivBotoes>
                     </DivContainer>
                 </ContainerCardServicos>
             )
-        })
-
-return (
-    <ContainerDiversosServicos>
-        {diversosServicos}
-    </ContainerDiversosServicos >
-)
+        }) : <p>carregando</p>
+        return (
+            <ContainerDiversosServicos>
+                {diversosServicos}
+            </ContainerDiversosServicos >
+        )
     }
 }
