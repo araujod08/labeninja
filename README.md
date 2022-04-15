@@ -15,7 +15,7 @@ A API labeninjas será utilizada para guardar e coletar informações dos servi�
 O wireframe está disponível em pdf.
 
 ### Link
-LabeninjasIDP.surge.sh
+https://labeninjasidp.surge.sh/
 
 ### Prints
 ![image](https://user-images.githubusercontent.com/98977257/163488686-27b54597-550f-4a85-836c-dd9b7459f43d.png)
