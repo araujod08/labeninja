@@ -27,7 +27,6 @@ export default class App extends React.Component {
                 return <div>Erro! Os ninjas roubaram a pagina.</div>
         }
     }
-
     irParaCadastro = () => {
         this.setState({ telaAtual: "souninja" })
     }

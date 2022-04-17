@@ -170,7 +170,7 @@ export default class PaginaCadastro extends React.Component {
                 dueDate: this.state.inputData
             }
             try {
-                const response = await axios.post(`${BaseUrl}/jobs`, body, headers)
+                await axios.post(`${BaseUrl}/jobs`, body, headers)
                 alert('serviço criado com sucesso')
             } catch (err) {
                 console.log(err.response)
@@ -184,10 +184,10 @@ export default class PaginaCadastro extends React.Component {
         return (
             <SuperContainerCadastro>
                 <Header
-                    irParaHome={this.props.irParaHome} irParaServico={this.props.irParaServico} />
+                    irParaHome={this.props.irParaHome} irParaServico={this.props.irParaServico} irParaCarrinho={this.props.irParaCarrinho} />
                 <ContainerMain>
                     <DivTitulo>
-                    <h1>Cadastre o seu serviço</h1>
+                        <h1>Cadastre o seu serviço</h1>
                     </DivTitulo>
                     <DivInputs>
                         <input
@@ -212,10 +212,10 @@ export default class PaginaCadastro extends React.Component {
                             type='date'
                             min={new Date().toISOString().slice(0, 10)}
                         />
-                        </DivInputs>
-                        <DivPagamentos>             
-                            <h1>Formas de Pagamentos:</h1>
-                            <div>
+                    </DivInputs>
+                    <DivPagamentos>
+                        <h1>Formas de Pagamentos:</h1>
+                        <div>
                             <input
                                 type="checkbox"
                                 id="cartao-de-credito"
@@ -224,36 +224,36 @@ export default class PaginaCadastro extends React.Component {
                                 onChange={this.onChangePagamentoCartaoDeCredito}
                             />
                             <label htmlFor="cartao-de-credito">Cartão de crédito</label>
-                        <div>
-                            <input
-                                type="checkbox"
-                                id="cartao-de-debito"
-                                name="pagamento"
-                                value="Cartão de débito"
-                                onChange={this.onChangePagamentoCartaodeDebito}
-                            />
-                            <label htmlFor="cartao-de-debito">Cartão de débito</label>
-                        </div>
-                        <div>
-                            <input
-                                type="checkbox"
-                                id="payPal"
-                                name="pagamento"
-                                value="PayPal"
-                                onChange={this.onChangePagamentoPayPal}
-                            />
-                            <label htmlFor="payPal">PayPal</label>
-                        </div>
-                        <div>
-                            <input
-                                type="checkbox"
-                                id="boleto"
-                                name="pagamento"
-                                value="Boleto"
-                                onChange={this.onChangePagamentoBoleto}
-                            />
-                            <label htmlFor="boleto">Boleto</label>
-                        </div>
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    id="cartao-de-debito"
+                                    name="pagamento"
+                                    value="Cartão de débito"
+                                    onChange={this.onChangePagamentoCartaodeDebito}
+                                />
+                                <label htmlFor="cartao-de-debito">Cartão de débito</label>
+                            </div>
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    id="payPal"
+                                    name="pagamento"
+                                    value="PayPal"
+                                    onChange={this.onChangePagamentoPayPal}
+                                />
+                                <label htmlFor="payPal">PayPal</label>
+                            </div>
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    id="boleto"
+                                    name="pagamento"
+                                    value="Boleto"
+                                    onChange={this.onChangePagamentoBoleto}
+                                />
+                                <label htmlFor="boleto">Boleto</label>
+                            </div>
                             <input
                                 type="checkbox"
                                 id="pix"
@@ -262,9 +262,9 @@ export default class PaginaCadastro extends React.Component {
                                 onChange={this.onChangePagamentoPix}
                             />
                             <label htmlFor="pix">Pix</label>
-                            </div>
-                            <button onClick={this.CreateJob}>Criar Serviço</button>
-                        </DivPagamentos>
+                        </div>
+                        <button onClick={this.CreateJob}>Criar Serviço</button>
+                    </DivPagamentos>
                 </ContainerMain>
                 <Footer />
             </SuperContainerCadastro>
